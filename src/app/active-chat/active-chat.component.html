@@ -1,0 +1,21 @@
+<div class="active-chat">
+  <h3> {{windowTitle}} </h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Message</th>
+      <th>messageID</th>
+      <th>date</th>
+    <tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let message of messages">
+
+      <td>{{message.messageId}}</td>
+      <td>{{message.messageBody}}</td>
+      <td>{{message.messageSent}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

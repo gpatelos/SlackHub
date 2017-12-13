@@ -1,0 +1,14 @@
+div {
+  height: 90vh;
+}
+.activeUser {
+  height: 100%;
+}
+
+.activeChat {
+  height: 90%;
+}
+
+.postToActiveChat {
+  height: 10%;
+}
