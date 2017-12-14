@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
-import {Message} from './message';
-import {IMessage} from './imessage';
-import {HttpClient,HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
+import { Message } from './message';
+import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+
 
 @Injectable()
 export class ChatService {
 
-  private _messageUrl = './api/messages/messages.json';
-  private messages: IMessage[] = [];
+  private ourObservable: Observable<Message[]>;
+  private messages: Message[] = [];
   private lastMessageId = 0;
 
-  constructor(private _http: HttpClient) {}
+  //ourObservable observes this messages
+
+  constructor() {
+     this.ourObservable = of(this.messages);
+    // this.ourObservable = Observable.interval(500)
+    //               .map(msgs=>this.messages);
+  }
 
   // getMessages(): IMessage[] {
   //   return [
@@ -37,11 +41,11 @@ export class ChatService {
   //     }
   //   ];
   // }
-  getMessages(): Observable<IMessage[]>{
-    return this._http.get<IMessage[]>(this._messageUrl)
-                  .do(data => console.log('All: '+JSON.stringify(data)))
-                  .catch(this.handleError);
-}
+//   getMessages(): Observable<IMessage[]>{
+//     return this._http.get<IMessage[]>(this._messageUrl)
+//                   .do(data => console.log('All: '+JSON.stringify(data)))
+//                   .catch(this.handleError);
+// }
 
   getMessageById(id: number): Message {
     return this.messages
@@ -49,15 +53,21 @@ export class ChatService {
       .pop();
   }
 
-  // getMessages(): Message[] {
-  //   return this.messages;
-  // }
+  getMessages(): Observable<Message[]> {
+     return this.ourObservable;
+    //return of(this.messages)
+  }
 
   addMessage(message: Message): ChatService {
+    console.log("addMessage called");
     if (!message.messageId) {
       message.messageId = ++this.lastMessageId;
+      console.log("addMessage id assigned");
     }
     this.messages.push(message);
+
+    console.log(message);
+    console.log(this.messages);
     return this;
   }
 
@@ -76,9 +86,9 @@ export class ChatService {
     return message;
   }
 
-  private handleError(err: HttpErrorResponse){
-    console.log(err.message);
-    return Observable.throw(err.message);
-  }
+  // private handleError(err: HttpErrorResponse){
+  //   console.log(err.message);
+  //   return Observable.throw(err.message);
+  // }
 
 }

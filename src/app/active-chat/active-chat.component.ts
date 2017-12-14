@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IMessage } from '../imessage';
+import { Message } from '../message';
 import { ChatService } from '../chat-service';
 
 @Component({
@@ -10,15 +10,18 @@ import { ChatService } from '../chat-service';
 export class ActiveChatComponent implements OnInit {
 
   public windowTitle = 'Active Chat Window';
-  public messages: IMessage[]= [];
-  errorMessage: String;
+  public messages: Message[]= [];
+
 
   constructor(private _chatService: ChatService) { }
 
-  ngOnInit(): void {
+  getMessages(): void{
     this._chatService.getMessages()
-          .subscribe(messages => this.messages = messages,
-              error => this.errorMessage = <any>error);
+            .subscribe(messages => this.messages = messages);
+  }
+  ngOnInit(): void {
+    // this.messages = this._chatService.getMessages();
+    this.getMessages();
   }
 
 }
