@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IMessage} from '../imessage';
-import {ChatService} from '../chat-service';
+import { Message } from '../message';
+import { ChatService } from '../chat-service';
 
 @Component({
   selector: 'app-active-chat',
@@ -10,12 +10,18 @@ import {ChatService} from '../chat-service';
 export class ActiveChatComponent implements OnInit {
 
   public windowTitle = 'Active Chat Window';
-  public messages: IMessage[]= [];
+  public messages: Message[]= [];
+
 
   constructor(private _chatService: ChatService) { }
 
+  getMessages(): void{
+    this._chatService.getMessages()
+            .subscribe(messages => this.messages = messages);
+  }
   ngOnInit(): void {
-    this.messages = this._chatService.getMessages();
+    // this.messages = this._chatService.getMessages();
+    this.getMessages();
   }
 
 }

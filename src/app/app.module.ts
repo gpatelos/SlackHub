@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//import {HttpClientModule} from '@angular/common/http';
-
+import {FormsModule} from'@angular/forms';
+import {ChatService} from './chat-service';
 import { AppComponent } from './app.component';
 import { ActiveChatComponent } from './active-chat/active-chat.component';
 import { ActiveUserComponent } from './active-user/active-user.component';
 import { PostToActiveChatComponent } from './post-to-active-chat/post-to-active-chat.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 @NgModule({
@@ -13,13 +14,14 @@ import { PostToActiveChatComponent } from './post-to-active-chat/post-to-active-
     AppComponent,
     ActiveChatComponent,
     ActiveUserComponent,
-    PostToActiveChatComponent
+    PostToActiveChatComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
-    //HttpClientModule
+    FormsModule
   ],
-  providers: [],
+  providers: [ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
