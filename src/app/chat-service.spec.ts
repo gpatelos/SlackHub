@@ -31,4 +31,20 @@ describe('ChatService', () => {
     service.addMessage(message);
     expect(service.getMessageById(1)).toBe(message);
   }));
+  it('delete message by id', inject([ChatService], (service: ChatService) => {
+    const message1 = new Message('Hi BRO');
+    const message2 = new Message('WAT UP CUZ!');
+    service.addMessage(message1);
+    service.addMessage(message2);
+    service.deleteMessageById(1);
+    service.deleteMessageById(2);
+    expect(service.getMessages()).toEqual([]);
+  }));
+  it('edit message by id', inject([ChatService], (service: ChatService) => {
+    const message = new Message('Hi Doggez');
+    service.addMessage(message);
+    const editedMessage = new Message('Hi Doggie');
+    const newMessage = service.editMessageById(1, editedMessage);
+    expect(newMessage.messageBody).toEqual('Hi Doggie'); 
+  }));
 });

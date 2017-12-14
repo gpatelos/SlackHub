@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {IMessage} from './imessage';
+import {Message} from './message';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ChatService {
-  private messages: IMessage[] = [];
+  private messages: Message[] = [];
   private lastMessageId = 0;
 
   constructor() {}
@@ -32,21 +32,37 @@ export class ChatService {
   //   ];
   // }
 
-  getMessageById(id: number): IMessage {
+  getMessageById(id: number): Message {
     return this.messages
       .filter(message => message.messageId === id)
       .pop();
   }
 
-  getMessages(): IMessage[] {
+  getMessages(): Message[] {
     return this.messages;
   }
 
-  addMessage(message: IMessage): ChatService {
+  addMessage(message: Message): ChatService {
     if (!message.messageId) {
       message.messageId = ++this.lastMessageId;
     }
     this.messages.push(message);
     return this;
   }
+
+  deleteMessageById(id: number): ChatService {
+    this.messages = this.messages
+                .filter(messages => messages.messageId !== id);
+      return this;
+  }
+
+  editMessageById(id: number, editedMessage: Object = {}): Message {
+    let message = this.getMessageById(id);
+    if(!message) {
+      return null;
+    }
+    Object.assign(message, editedMessage);
+    return message;
+  }
+
 }

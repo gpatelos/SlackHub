@@ -1,6 +1,4 @@
-import {IMessage} from './imessage';
-
-export class Message implements IMessage{
+export class Message {
   messageId: number;
   messageBody: String;
   messageSent: String;
