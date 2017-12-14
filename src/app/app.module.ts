@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ActiveChatComponent } from './active-chat/active-chat.component';
@@ -17,7 +17,7 @@ import { PostToActiveChatComponent } from './post-to-active-chat/post-to-active-
   ],
   imports: [
     BrowserModule,
-    //HttpClientModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

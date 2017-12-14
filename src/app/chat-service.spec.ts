@@ -45,6 +45,6 @@ describe('ChatService', () => {
     service.addMessage(message);
     const editedMessage = new Message('Hi Doggie');
     const newMessage = service.editMessageById(1, editedMessage);
-    expect(newMessage.messageBody).toEqual('Hi Doggie'); 
+    expect(newMessage.messageBody).toEqual('Hi Doggie');
   }));
 });

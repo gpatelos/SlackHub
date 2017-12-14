@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import {Message} from './message';
-import {HttpClient} from '@angular/common/http';
+import {IMessage} from './imessage';
+import {HttpClient,HttpErrorResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ChatService {
-  private messages: Message[] = [];
+
+  private _messageUrl = './api/messages/messages.json';
+  private messages: IMessage[] = [];
   private lastMessageId = 0;
 
-  constructor() {}
+  constructor(private _http: HttpClient) {}
 
   // getMessages(): IMessage[] {
   //   return [
@@ -31,6 +37,11 @@ export class ChatService {
   //     }
   //   ];
   // }
+  getMessages(): Observable<IMessage[]>{
+    return this._http.get<IMessage[]>(this._messageUrl)
+                  .do(data => console.log('All: '+JSON.stringify(data)))
+                  .catch(this.handleError);
+}
 
   getMessageById(id: number): Message {
     return this.messages
@@ -38,9 +49,9 @@ export class ChatService {
       .pop();
   }
 
-  getMessages(): Message[] {
-    return this.messages;
-  }
+  // getMessages(): Message[] {
+  //   return this.messages;
+  // }
 
   addMessage(message: Message): ChatService {
     if (!message.messageId) {
@@ -63,6 +74,11 @@ export class ChatService {
     }
     Object.assign(message, editedMessage);
     return message;
+  }
+
+  private handleError(err: HttpErrorResponse){
+    console.log(err.message);
+    return Observable.throw(err.message);
   }
 
 }
