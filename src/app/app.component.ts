@@ -8,5 +8,5 @@ import {ChatService} from './chat-service';
   providers: [ChatService]
 })
 export class AppComponent {
-  title = 'Slack Hub';
+  title = 'Slack Hub';   
 }

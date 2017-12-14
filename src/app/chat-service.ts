@@ -43,10 +43,13 @@ export class ChatService {
   }
 
   addMessage(message: Message): ChatService {
+    console.log("addMessage called");
     if (!message.messageId) {
       message.messageId = ++this.lastMessageId;
+      console.log("addMessage id assigned");
     }
     this.messages.push(message);
+    console.log("addMessage pushed");
     return this;
   }
 
