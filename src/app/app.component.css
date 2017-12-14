@@ -3,12 +3,16 @@ div {
 }
 .activeUser {
   height: 100%;
+  width: 105%;
 }
 
 .activeChat {
   height: 90%;
+  width: 100%;
 }
 
 .postToActiveChat {
   height: 10%;
 }
+
+
