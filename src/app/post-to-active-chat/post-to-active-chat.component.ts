@@ -6,7 +6,6 @@ import {Message} from '../message';
   selector: 'app-post-to-active-chat',
   templateUrl: './post-to-active-chat.component.html',
   styleUrls: ['./post-to-active-chat.component.css'],
-  providers: [ChatService]
 })
 export class PostToActiveChatComponent implements OnInit {
 
@@ -16,7 +15,7 @@ export class PostToActiveChatComponent implements OnInit {
 
   addMessage() {
     this._chatService.addMessage(this.newMessage);
-    this.newMessage = new Message(); 
+    this.newMessage = new Message();
   }
 
   ngOnInit() {

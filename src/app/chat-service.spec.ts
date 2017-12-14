@@ -46,5 +46,5 @@ describe('ChatService', () => {
     const editedMessage = new Message('Hi Doggie');
     const newMessage = service.editMessageById(1, editedMessage);
     expect(newMessage.messageBody).toEqual('Hi Doggie');
-  })); 
+  }));
 });
