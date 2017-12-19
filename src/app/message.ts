@@ -1,10 +1,9 @@
 export class Message {
-  messageId: number;
-  messageBody: String;
-  messageSent: String;
+  message:string
 
-  constructor(body?: string, sent?: string) {
-    this.messageBody = body;
-    this.messageSent = sent;
+
+  constructor(message: string) {
+    this.message = message;
+
   }
 }

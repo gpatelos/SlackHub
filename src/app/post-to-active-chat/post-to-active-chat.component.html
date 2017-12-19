@@ -1,8 +1,7 @@
 <div class="input-group rounded">
     <input type="text" class="form-control" placeholder="Type message here" aria-label="Type message here"
-    [(ngModel)]="newMessage.messageBody" (keyup.enter)="addMessage()">
+     (keyup.enter)="onClick(input)" #input>
     <span class="input-group-btn rounded" style="background-color: dimgray">
         <!-- <button class="btn btn-secondary" type="button">Post!</button> -->
       </span>
 </div>
-

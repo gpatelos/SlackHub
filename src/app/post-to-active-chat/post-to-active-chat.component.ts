@@ -1,24 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 import {ChatService} from '../chat-service';
 import {Message} from '../message';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import {Http,Response} from '@angular/http';
 
 @Component({
   selector: 'app-post-to-active-chat',
   templateUrl: './post-to-active-chat.component.html',
   styleUrls: ['./post-to-active-chat.component.css'],
 })
-export class PostToActiveChatComponent implements OnInit {
+export class PostToActiveChatComponent {
+
 
   constructor(private _chatService: ChatService) { }
 
-  newMessage: Message = new Message();
 
-  addMessage() {
-    this._chatService.addMessage(this.newMessage);
-    this.newMessage = new Message();
+
+
+  onClick(input: any): void {
+    this._chatService.addMessage(input.value);
+    input.value="";
   }
 
-  ngOnInit() {
-  }
 
 }

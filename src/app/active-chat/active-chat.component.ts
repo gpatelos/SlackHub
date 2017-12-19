@@ -15,13 +15,12 @@ export class ActiveChatComponent implements OnInit {
 
   constructor(private _chatService: ChatService) { }
 
-  getMessages(): void{
-    this._chatService.getMessages()
-            .subscribe(messages => this.messages = messages);
-  }
   ngOnInit(): void {
-    // this.messages = this._chatService.getMessages();
-    this.getMessages();
+  this._chatService.getMessages().subscribe(data => {
+    this.messages = data;
+  },
+  error => console.error(error)
+  );
   }
 
 }
