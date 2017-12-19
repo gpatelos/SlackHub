@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from'@angular/forms';
-import {ChatService} from './chat-service';
+import {ChatService} from './service/chat-service';
 import { AppComponent } from './app.component';
 import { ActiveChatComponent } from './active-chat/active-chat.component';
 import { ActiveUserComponent } from './active-user/active-user.component';
 import { PostToActiveChatComponent } from './post-to-active-chat/post-to-active-chat.component';
-import { MessagesComponent } from './messages/messages.component';
 import { HttpModule } from '@angular/http';
 
 
@@ -15,8 +14,7 @@ import { HttpModule } from '@angular/http';
     AppComponent,
     ActiveChatComponent,
     ActiveUserComponent,
-    PostToActiveChatComponent,
-    MessagesComponent
+    PostToActiveChatComponent
   ],
   imports: [
     BrowserModule,
