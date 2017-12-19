@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Message } from '../message';
-import { ChatService } from '../chat-service';
+import { Message } from '../model/message';
+import { ChatService } from '../service/chat-service';
 
 @Component({
   selector: 'app-active-chat',
@@ -18,9 +18,7 @@ export class ActiveChatComponent implements OnInit {
   ngOnInit(): void {
   this._chatService.getMessages().subscribe(data => {
     this.messages = data;
-  },
-  error => console.error(error)
-  );
+  });
   }
 
 }

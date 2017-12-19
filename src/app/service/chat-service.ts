@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Message } from './message';
+import { Message } from '../model/message';
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -16,12 +16,14 @@ export class ChatService {
   constructor(private http: Http) {
 
   }
+
   getMessages(): Observable<any> {
     return this.http.get(this.uri).map((response:Response) => response.json());
   }
+
   addMessage(input:string) {
     let newMessage:Message = new Message(input);
     console.log("addMessage from ChatService");
-    this.http.post(this.uri,JSON.parse(JSON.stringify(newMessage))).subscribe((response:Response) => response);
+    this.http.post(this.uri,newMessage).subscribe((response:Response) => response);
   }
 }

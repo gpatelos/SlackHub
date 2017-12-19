@@ -1,6 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
-import {ChatService} from '../chat-service';
-import {Message} from '../message';
+import {ChatService} from '../service/chat-service';
+import {Message} from '../model/message';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {Http,Response} from '@angular/http';
@@ -12,16 +12,10 @@ import {Http,Response} from '@angular/http';
 })
 export class PostToActiveChatComponent {
 
-
   constructor(private _chatService: ChatService) { }
-
-
-
 
   onClick(input: any): void {
     this._chatService.addMessage(input.value);
     input.value="";
   }
-
-
 }
