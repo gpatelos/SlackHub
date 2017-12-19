@@ -7,6 +7,7 @@ import { ActiveChatComponent } from './active-chat/active-chat.component';
 import { ActiveUserComponent } from './active-user/active-user.component';
 import { PostToActiveChatComponent } from './post-to-active-chat/post-to-active-chat.component';
 import { MessagesComponent } from './messages/messages.component';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MessagesComponent } from './messages/messages.component';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     FormsModule
   ],
   providers: [ChatService],
