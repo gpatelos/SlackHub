@@ -9,11 +9,25 @@ import { ChatService } from '../service/chat-service';
 })
 export class ActiveChatComponent implements OnInit {
 
-  public windowTitle = 'Active Chat Window';
-  public messages: Message[]= [];
+     public windowTitle = 'Active Chat Window';
+     messages: Message[];
 
+     constructor(private _chatService: ChatService) { }
 
-  constructor(private _chatService: ChatService) { }
+     //errorMessage: String;
+     // constructor(private _chatService: ChatService) { }
+
+     // ngOnInit(): void {
+     //      this.fetchMessages();
+     // }
+     //
+     //
+     // fetchMessages(): void {
+     //      this._chatService.getMessagesObservable()
+  	 //                       .subscribe( messages => this.messages = messages,
+     //                                      error => this.errorMessage = <any>error);
+     // }
+
 
   ngOnInit(): void {
   this._chatService.getMessages().subscribe(data => {

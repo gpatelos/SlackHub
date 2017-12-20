@@ -9,15 +9,11 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ChatService {
-  private uri = 'http://localhost:8080/chat/messages';
+private uri = 'http://localhost:8080/chat/messages';
 
-  private ourObservable: Observable<any>;
+constructor(private http: Http) {}
 
-  constructor(private http: Http) {
-
-  }
-
-  getMessages(): Observable<any> {
+  getMessages(): Observable<Message[]> {
     return this.http.get(this.uri).map((response:Response) => response.json());
   }
 
@@ -26,4 +22,25 @@ export class ChatService {
     console.log("addMessage from ChatService");
     this.http.post(this.uri,newMessage).subscribe((response:Response) => response);
   }
+
+  // getMessagesObservable(): Observable<Message[]> {
+  //   return this.http.get(this.url)
+	// 	                    .map(this.extractData);
+  //    }
+  //
+  // addMessageObservable(message:Message): Observable<Message> {
+  //   return this.http.post(this.url, message)
+  //                   .map(this.extractData);
+  //   }
+  //
+  // private extractData(response: Response) {
+	//    let body = response.json();
+  //         return body.data || {};
+  //   }
+  //
+  // private handleErrorObservable (error: Response | any) {
+  //   	console.error(error.message || error);
+  //   	return Observable.throw(error.message || error);
+  //       }
+
 }
